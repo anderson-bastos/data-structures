@@ -6,21 +6,50 @@ import org.junit.jupiter.api.Test
 class LinkedListTest {
 
     @Test
-    fun `Should add an elements in a linked list`() {
-        val linkedList = LinkedList()
-        linkedList.add(2)
+    fun `Should add one element in a linked list`() {
+        val linkedListTest = LinkedList()
+        linkedListTest.push(2)
 
-        val element = linkedList.search(2)
-        Assertions.assertEquals(2, element.value)
+        Assertions.assertEquals(2, linkedListTest.head?.value)
     }
 
     @Test
-    fun `Should add two elements in a linked list and validate sequence`() {
-        val linkedList = LinkedList()
-        linkedList.add(2)
-        linkedList.add(3)
+    fun `Should add two elements in a linked list`() {
+        val linkedListTest = LinkedList()
+        linkedListTest.push(2)
+        linkedListTest.push(3)
 
-        val element = linkedList.search(2)
-        Assertions.assertEquals(3, element.next?.value)
+        Assertions.assertEquals(3, linkedListTest.head?.value)
+        Assertions.assertEquals(2, linkedListTest.head?.next?.value)
+    }
+
+    @Test
+    fun `Should append one element in a linked list`() {
+        val linkedListTest = LinkedList()
+        linkedListTest.append(2)
+
+        Assertions.assertEquals(2, linkedListTest.head?.value)
+    }
+
+    @Test
+    fun `Should append two elements in a linked list`() {
+        val linkedListTest = LinkedList()
+        linkedListTest.append(2)
+        linkedListTest.append(3)
+
+        Assertions.assertEquals(2, linkedListTest.head?.value)
+        Assertions.assertEquals(3, linkedListTest.head?.next?.value)
+    }
+
+    @Test
+    fun `Should append with two elements in a linked list and validate head and tail`() {
+        val linkedListTest = LinkedList()
+        linkedListTest.appendWithTail(2)
+        linkedListTest.appendWithTail(3)
+        linkedListTest.appendWithTail(4)
+        linkedListTest.appendWithTail(5)
+
+        Assertions.assertEquals(2, linkedListTest.head?.value)
+        Assertions.assertEquals(5, linkedListTest.tail?.value)
     }
 }
