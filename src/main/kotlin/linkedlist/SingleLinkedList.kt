@@ -228,7 +228,5 @@ class SingleLinkedList {
         temp?.next = null
         return head
     }
-
-    // Deletion in Linked List
 }
 
