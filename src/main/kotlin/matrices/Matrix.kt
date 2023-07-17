@@ -1,6 +1,5 @@
 package matrices
 
-
 fun Array<IntArray>.sum(firstMatrix: Array<IntArray>, rows: Int, columns: Int) = run {
     val product = Array(rows) { IntArray(columns) }
     for (i in 0 until rows) {

@@ -18,7 +18,8 @@ class MatrixTest {
         val sum = matrixOne.sum(secondMatrix, 2, 3)
 
         Assertions.assertArrayEquals(
-            arrayOf(intArrayOf(4, 6, 8), intArrayOf(10, 4, 6)), sum
+            arrayOf(intArrayOf(4, 6, 8), intArrayOf(10, 4, 6)),
+            sum
         )
     }
 
@@ -30,7 +31,8 @@ class MatrixTest {
         val sum = matrixOne.subtraction(secondMatrix, 2, 3)
 
         Assertions.assertArrayEquals(
-            arrayOf(intArrayOf(0, 0, 0), intArrayOf(0, 0, 0)), sum
+            arrayOf(intArrayOf(0, 0, 0), intArrayOf(0, 0, 0)),
+            sum
         )
     }
 
@@ -42,7 +44,8 @@ class MatrixTest {
         val sum = matrixOne.multiplication(secondMatrix, 2, 3)
 
         Assertions.assertArrayEquals(
-            arrayOf(intArrayOf(4, 9, 16), intArrayOf(25, 4, 9)), sum
+            arrayOf(intArrayOf(4, 9, 16), intArrayOf(25, 4, 9)),
+            sum
         )
     }
 
@@ -53,7 +56,8 @@ class MatrixTest {
         val sum = matrixOne.multiplication(2, 2, 3)
 
         Assertions.assertArrayEquals(
-            arrayOf(intArrayOf(4, 6, 8), intArrayOf(10, 4, 6)), sum
+            arrayOf(intArrayOf(4, 6, 8), intArrayOf(10, 4, 6)),
+            sum
         )
     }
 
@@ -65,7 +69,8 @@ class MatrixTest {
         val sum = matrixOne.division(secondMatrix, 2, 3)
 
         Assertions.assertArrayEquals(
-            arrayOf(intArrayOf(1, 1, 1), intArrayOf(1, 1, 1)), sum
+            arrayOf(intArrayOf(1, 1, 1), intArrayOf(1, 1, 1)),
+            sum
         )
     }
 
