@@ -1,6 +1,6 @@
 package linkedlist
 
-import java.util.Stack
+import java.util.*
 
 class SingleLinkedList {
     var head: Node? = null
@@ -43,7 +43,7 @@ class SingleLinkedList {
      *  Time Complexity: O(N)
      *  Auxiliary Space: O(N), Stack space used by recursive calls
      */
-    fun appendRecursive(value: Int, node: Node? = head) {
+    fun appendRecursive(value: Int) {
         head?.let {
             appendRecursive(it, value)
         } ?: run {
@@ -56,7 +56,7 @@ class SingleLinkedList {
             appendRecursive(it, value)
         } ?: run {
             val newNode = Node(value)
-            node?.next = newNode
+            node.next = newNode
         }
     }
 
@@ -97,6 +97,17 @@ class SingleLinkedList {
         return false
     }
 
+    fun getNode(value: Int): Node? {
+        var current = head
+        while(current != null) {
+            when(current.value) {
+                value -> return current
+                else -> current = current.next
+            }
+        }
+        return null
+    }
+
     /**
      * Recursive Approach
      * Time Complexity: O(N), to traverse linked list.
@@ -106,9 +117,9 @@ class SingleLinkedList {
         if(node == null)
             return false
 
-        if(node?.value == value)
+        if(node.value == value)
             return true
-        return searchRecursive(value, node?.next)
+        return searchRecursive(value, node.next)
     }
 
     // Find Length of a Linked List (Iterative and Recursive)
@@ -227,6 +238,104 @@ class SingleLinkedList {
         }
         temp?.next = null
         return head
+    }
+
+    // Deletion in Linked List
+    /**
+     * Iterative Method to delete an element from the linked list
+     * Time Complexity: O(n)
+     * Auxiliary Space: O(1)
+     */
+    fun deleteNode(value: Int, node: Node? = head) {
+        var prev: Node? = null
+        var current = node
+        while (current != null) {
+            if(current.value == value) {
+                when(prev) {
+                    null -> head = head?.next
+                    else -> prev.next = current.next
+                }
+                return
+            }
+            prev = current
+            current = current.next
+        }
+    }
+
+    /**
+     * Iterative Method to delete an element from the linked list
+     * Time Complexity: O(N)
+     * Auxiliary Space: O(N), Function call stack space
+     */
+    fun deleteNodeRecursive(value: Int, previous: Node? = null, current: Node? = head) {
+
+        if(current == null)
+            return
+
+        if(current?.value == value) {
+            when(previous) {
+                null -> head = current.next
+                else -> previous.next = current.next
+            }
+        }
+        deleteNodeRecursive(value, current, current?.next)
+    }
+
+    // Delete a Linked List node at a given position
+    /**
+     * Best Case: O(1) if given position is 1
+     * Average  & Worst Case: O(N) where N is the length of the linked list.
+     * This is because in the worst case, we need to traverse the entire linked list to find the node to be deleted
+     */
+    fun deleteNodeByPosition(position: Int, node: Node? = head) {
+        if(head == null) return
+
+        if(position == 0) {
+            head = node?.next
+            return
+        }
+
+        var i = 0
+        var current = node
+        while (current != null && i < position - 1) {
+            current = current.next
+            i++
+        }
+
+        when(current?.next) {
+            null -> return
+            else -> current.next = current.next?.next
+        }
+    }
+
+    // Get Nth node in a Linked List
+    /**
+     * Time Complexity: O(n)
+     * Auxiliary Space: O(1) space created for variables
+     */
+    fun getNth(index: Int, node: Node? = head): Int? {
+        var current = node
+        var count = 0
+        while (current != null) {
+            if(count == index)
+                return current.value
+            current = current.next
+            ++count
+        }
+        return 0
+    }
+
+    /**
+     * Recursive Approach
+     * Time Complexity : O(n)
+     * Auxiliary Space: O(n) due to recursive calls.
+     */
+    fun getNthRecursive(index: Int, node: Node? = head): Int? {
+        val count = 0
+        if (node == null)
+            return -1
+
+        return if (count == index) node?.value else getNthRecursive(index-1, node?.next)
     }
 }
 
