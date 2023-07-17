@@ -26,11 +26,11 @@ class SingleLinkedList {
      */
     fun append(value: Int) {
         val node = Node(value)
-        when(head) {
+        when (head) {
             null -> head = node
             else -> {
                 var last: Node? = head
-                while(last?.next != null) {
+                while (last?.next != null) {
                     last = last.next
                 }
                 last?.next = node
@@ -67,7 +67,7 @@ class SingleLinkedList {
      */
     fun appendUsingTail(value: Int) {
         val node = Node(value)
-        when(head) {
+        when (head) {
             null -> {
                 head = node
                 tail = node
@@ -88,8 +88,8 @@ class SingleLinkedList {
      */
     fun search(value: Int): Boolean {
         var current = head
-        while(current != null) {
-            when(current.value) {
+        while (current != null) {
+            when (current.value) {
                 value -> return true
                 else -> current = current.next
             }
@@ -99,8 +99,8 @@ class SingleLinkedList {
 
     fun getNode(value: Int): Node? {
         var current = head
-        while(current != null) {
-            when(current.value) {
+        while (current != null) {
+            when (current.value) {
                 value -> return current
                 else -> current = current.next
             }
@@ -114,11 +114,13 @@ class SingleLinkedList {
      * Auxiliary Space: O(N), Stack
      */
     fun searchRecursive(value: Int, node: Node? = head): Boolean {
-        if(node == null)
+        if (node == null) {
             return false
+        }
 
-        if(node.value == value)
+        if (node.value == value) {
             return true
+        }
         return searchRecursive(value, node.next)
     }
 
@@ -132,7 +134,7 @@ class SingleLinkedList {
     fun count(): Int {
         var count = 0
         var current = head
-        while(current != null) {
+        while (current != null) {
             ++count
             current = current.next
         }
@@ -145,7 +147,7 @@ class SingleLinkedList {
      * Auxiliary Space: O(N), Extra space is used in the recursion call stack.
      */
     fun countRecursive(node: Node? = head): Int =
-        when(node) {
+        when (node) {
             null -> 0
             else -> 1 + countRecursive(node.next)
         }
@@ -157,7 +159,7 @@ class SingleLinkedList {
      * Auxiliary Space: O(1), As we are using the tail recursive function, no extra space is used in the function call stack.
      */
     fun countRecursiveUsingConstantSpace(node: Node? = head, count: Int = 0): Int =
-        when(node) {
+        when (node) {
             null -> count
             else -> countRecursiveUsingConstantSpace(node.next, 1 + count)
         }
@@ -182,14 +184,13 @@ class SingleLinkedList {
         return head
     }
 
-
     /**
      * Time Complexity: O(N), Visiting over every node one time
      * Auxiliary Space: O(N), Function call stack space
      */
     fun reverseRecursive(node: Node? = head): Node? =
         node?.let {
-            if(it.next == null) it
+            if (it.next == null) it
 
             val rest = reverse(it.next)
             it.next?.next = node
@@ -203,9 +204,9 @@ class SingleLinkedList {
      * Auxiliary Space: O(N), Function call stack space
      */
     fun reverseUtil(current: Node? = head, previous: Node? = null): Node? {
-        if(head == null) return null
+        if (head == null) return null
 
-        if(current?.next == null) {
+        if (current?.next == null) {
             head = current
             current?.next = previous
             return head
@@ -250,8 +251,8 @@ class SingleLinkedList {
         var prev: Node? = null
         var current = node
         while (current != null) {
-            if(current.value == value) {
-                when(prev) {
+            if (current.value == value) {
+                when (prev) {
                     null -> head = head?.next
                     else -> prev.next = current.next
                 }
@@ -268,12 +269,12 @@ class SingleLinkedList {
      * Auxiliary Space: O(N), Function call stack space
      */
     fun deleteNodeRecursive(value: Int, previous: Node? = null, current: Node? = head) {
-
-        if(current == null)
+        if (current == null) {
             return
+        }
 
-        if(current?.value == value) {
-            when(previous) {
+        if (current?.value == value) {
+            when (previous) {
                 null -> head = current.next
                 else -> previous.next = current.next
             }
@@ -288,9 +289,9 @@ class SingleLinkedList {
      * This is because in the worst case, we need to traverse the entire linked list to find the node to be deleted
      */
     fun deleteNodeByPosition(position: Int, node: Node? = head) {
-        if(head == null) return
+        if (head == null) return
 
-        if(position == 0) {
+        if (position == 0) {
             head = node?.next
             return
         }
@@ -302,7 +303,7 @@ class SingleLinkedList {
             i++
         }
 
-        when(current?.next) {
+        when (current?.next) {
             null -> return
             else -> current.next = current.next?.next
         }
@@ -317,8 +318,9 @@ class SingleLinkedList {
         var current = node
         var count = 0
         while (current != null) {
-            if(count == index)
+            if (count == index) {
                 return current.value
+            }
             current = current.next
             ++count
         }
@@ -332,10 +334,10 @@ class SingleLinkedList {
      */
     fun getNthRecursive(index: Int, node: Node? = head): Int? {
         val count = 0
-        if (node == null)
+        if (node == null) {
             return -1
+        }
 
-        return if (count == index) node?.value else getNthRecursive(index-1, node?.next)
+        return if (count == index) node?.value else getNthRecursive(index - 1, node?.next)
     }
 }
-

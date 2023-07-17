@@ -214,7 +214,6 @@ class SingleLinkedListTest {
         singleLinkedListTest.appendRecursive(4)
         singleLinkedListTest.appendRecursive(5)
 
-
         Assertions.assertEquals(2, singleLinkedListTest.getNth(0))
         Assertions.assertEquals(3, singleLinkedListTest.getNth(1))
         Assertions.assertEquals(4, singleLinkedListTest.getNth(2))
@@ -228,7 +227,6 @@ class SingleLinkedListTest {
         singleLinkedListTest.appendRecursive(3)
         singleLinkedListTest.appendRecursive(4)
         singleLinkedListTest.appendRecursive(5)
-
 
         Assertions.assertEquals(2, singleLinkedListTest.getNthRecursive(0))
         Assertions.assertEquals(3, singleLinkedListTest.getNthRecursive(1))
