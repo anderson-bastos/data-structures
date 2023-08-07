@@ -3,6 +3,12 @@ package linkedlist
 import java.util.*
 
 class SingleLinkedList {
+
+    inner class Node (
+        val value: Int? = null,
+        var next: Node? = null
+    )
+
     var head: Node? = null
     var tail: Node? = null
 
